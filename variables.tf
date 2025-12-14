@@ -33,12 +33,12 @@ variable vnet_name {
   default     = "workers-vnet"
 }
 
-variable SUNSYNC_USER {
+variable SUNSYNK_USER {
   type = string
   description = "usrr"
 
 }
-variable SUNSYNC_PASSWORD {
+variable SUNSYNK_PASSWORD {
   type = string
   description = "usrr"
 

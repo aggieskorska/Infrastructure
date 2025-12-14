@@ -20,12 +20,12 @@ variable "datalake_storage_account_id" {
   type        = string
 }
 
-variable sunsync_user {
+variable sunsynk_user {
   type = string
   description = "usrr"
   
 }
-variable sunsync_password {
+variable sunsynk_password {
   type = string
   description = "usrr"
   

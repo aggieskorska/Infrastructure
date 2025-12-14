@@ -31,13 +31,6 @@ provider "azuread" {
   tenant_id = var.tenant_id
 }
 
-# provider "databricks" {
-#   azure_workspace_resource_id = var.databricks_workspace_resource_id
-# #   azure_client_id             = var.azure_client_id
-# #   azure_client_secret         = var.azure_client_secret
-# #   azure_tenant_id             = var.tenant_id
-# }
-
 provider "databricks" {
   azure_workspace_resource_id = "1365204546860500"
 }

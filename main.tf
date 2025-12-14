@@ -18,8 +18,8 @@ module "ingestion" {
     datalake_storage_account_id = module.datalake.datalake_storage_account_id
     resource_group_name = module.landing.resource_group.name
     location    = module.landing.resource_group.location
-    sunsync_user = var.SUNSYNC_USER
-    sunsync_password = var.SUNSYNC_PASSWORD
+    sunsynk_user = var.SUNSYNK_USER
+    sunsynk_password = var.SUNSYNK_PASSWORD
     mel_user = var.MEL_USER
     mel_password = var.MEL_PASSWORD
     weather_api_url = var.WEATHER_API_URL
