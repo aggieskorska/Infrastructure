@@ -10,6 +10,7 @@ module "datalake" {
     tenant_id   = var.tenant_id
     location    = module.landing.resource_group.location
     resource_group_name = module.landing.resource_group.name
+    containers = var.datalake_containers
 }
 
 module "ingestion" {

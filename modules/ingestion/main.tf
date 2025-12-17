@@ -11,8 +11,19 @@ resource "azurerm_data_factory" "IngestionADF" {
     account_name   = "aggieskorska"
     repository_name = "Orchestration"
     branch_name = "main"
+    publishing_enabled = true
     root_folder = "/"
+    git_url = "https://github.com"
   }
+  identity {
+    type = "SystemAssigned"
+  }
+}
+
+resource "azurerm_role_assignment" "adf_adls_role" {
+  principal_id   = azurerm_data_factory.IngestionADF.identity[0].principal_id
+  role_definition_name = "Storage Blob Data Contributor"
+  scope          = var.datalake_storage_account_id
 }
 
 resource "azurerm_storage_account" "functionsa" {
@@ -38,6 +49,10 @@ resource "azurerm_linux_function_app" "func_app" {
   service_plan_id            = azurerm_service_plan.func_plan.id
   storage_account_name       = azurerm_storage_account.functionsa.name
   storage_account_access_key = azurerm_storage_account.functionsa.primary_access_key
+  identity {
+    type = "SystemAssigned"
+
+  }
   site_config {
     application_stack {
       python_version = "3.10"
@@ -62,4 +77,17 @@ resource "azurerm_linux_function_app" "func_app" {
 
   }
 
+}
+
+
+resource "azurerm_role_assignment" "adf_fun_app_role" {
+  principal_id   = azurerm_data_factory.IngestionADF.identity[0].principal_id
+  role_definition_name = "Contributor"
+  scope          = azurerm_linux_function_app.func_app.id
+}
+
+resource "azurerm_role_assignment" "function_adls_role" {
+  principal_id   = azurerm_linux_function_app.func_app.identity[0].principal_id
+  role_definition_name = "Storage Blob Data Contributor"
+  scope          = var.datalake_storage_account_id
 }

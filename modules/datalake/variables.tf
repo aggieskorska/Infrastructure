@@ -1,3 +1,7 @@
+variable containers {
+  type       = list(string)
+  description = "List of Data Lake containers to create"
+}
 variable "environment" {
   description = "The environment for the resources (e.g., dev, sit, prod)"
   type        = string

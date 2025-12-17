@@ -1,3 +1,9 @@
+variable datalake_containers {
+  type       = list(string)
+  description = "List of Data Lake containers to create"
+  default    = ["raw", "bronze", "silver", "gold"]
+}
+
 variable tenant_id {
   description = "The Azure AD tenant ID"
   type        = string
